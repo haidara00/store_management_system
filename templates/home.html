@@ -1,0 +1,96 @@
+{% extends "_base.html" %}
+
+
+{% block title %}Dashboard{% endblock title %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+            <div class="card">
+                <img class="card-img-top" src="https://picsum.photos/200/150/?random">
+                <div class="card-block">
+                    <h4 class="card-title"><a href="{% url "sale_list" %}">Les Sorties</a></h4>
+                    <div class="meta">
+                        <a href="#">Friends</a>
+                    </div>
+                    <div class="card-text">
+                        Tawshif is a web designer living in Bangladesh.
+                    </div>
+                
+                    <div class="card-footer">
+                        <span class="float-right">Joined in 2013</span>
+                        <span><i class=""></i>75 Friends</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+            <div class="card">
+                <img class="card-img-top" src="https://picsum.photos/200/150/?random">
+                <div class="card-block">
+                    <h4 class="card-title"><a href="{% url "stock_list" %}">Les Stocks</a></h4>
+                    <div class="meta">
+                        <a href="#">Friends</a>
+                    </div>
+                    <div class="card-text">
+                        Tawshif is a web designer living in Bangladesh.
+                    </div>
+                
+                    <div class="card-footer">
+                        <span class="float-right">Joined in 2013</span>
+                        <span><i class=""></i>75 Friends</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+            <div class="card">
+                <img class="card-img-top" src="https://picsum.photos/200/150/?random"> 
+                <div class="card-block">
+                    <h4 class="card-title"><a href="{% url "arrival_list" %}">Les Entrées</a></h4>
+                    <div class="meta">
+                        <a href="#">Friends</a>
+                    </div>
+                    <div class="card-text">
+                        Tawshif is a web designer living in Bangladesh.
+                    </div>
+                
+                    <div class="card-footer">
+                        <span class="float-right">Joined in 2013</span>
+                        <span><i class=""></i>75 Friends</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+            <div class="card">
+                <img class="card-img-top" src="https://picsum.photos/200/150/?random">
+                <div class="card-block">
+                    <h4 class="card-title"><a href="{% url "supplier_list" %}">Les Fournisseurs</a></h4>
+                    <div class="meta">
+                        <a href="#">Friends</a>
+                    </div>
+                    <div class="card-text">
+                        Tawshif is a web designer living in Bangladesh.
+                    </div>
+                
+                    <div class="card-footer">
+                        <span class="float-right">Joined in 2013</span>
+                        <span><i class=""></i>75 Friends</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {% comment "end of row" %}{% endcomment %}
+    </div>
+</div>
+
+
+{% endblock content %}

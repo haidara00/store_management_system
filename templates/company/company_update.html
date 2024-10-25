@@ -1,0 +1,36 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Editer Votre Entréprise{% endblock title %}
+
+{% block content %}
+<h1>
+    Modifiez les Parametres de votre Entreprise!
+</h1>
+<form method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <input class="btn btn-outline-primary" type="submit" value="Enregistrer">
+</form>
+<br>
+<h1>
+    À propos de {{company.name}}
+</h1>
+
+{% if company.companyinfo_set.all %}
+{% for info in company.companyinfo_set.all %}
+
+    <p><strong>{{info.index}}:</strong> {{info.info}}<a href="{% url "company_delete" info.pk %}">Éffacer</p>  
+{% endfor %}
+{% endif %}
+<h1>
+    Ajouter de nouvelle information sur votre entréprise!
+</h1>
+<form method="post">
+    {% csrf_token %}
+    {{infoform|crispy}}
+    <input class="btn btn-outline-primary" type="submit" value="Enregistrer">
+</form>
+
+
+{% endblock content %}

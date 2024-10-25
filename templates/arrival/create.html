@@ -1,0 +1,22 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Ajouter un Nouveau Arrivage{% endblock title %}
+
+{% block content %}
+
+{% if arrival %}
+<h1 class="my-6">
+    Des nouvelles entrées de "{{arrival.stock}}" ont été ajoutées avec success!
+</h1>
+{% else %}
+<h1 class="my-6 ">
+    Ajouter un Nouvel Arrivage
+</h1>
+<form method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <input class="btn btn-success" type="submit" value="Enregistrer">
+</form>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,123 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}Liste Des Stocks{% endblock title %}
+
+{% block content %}
+
+
+<h1 class="my-3"> 
+    Tous les Stocks
+</h1>
+<p class="text text-info"><strong>Categories:</strong></p>
+
+<div class="scrollmenu">
+  <a href="{% url "stock_list" %}">Tout</a>
+  {% for category in categories %}
+  
+  <a href="{% url "category_list" category.name %}">{{category|title}}</a>
+
+  {% endfor %}
+  <a href="{% url "category_create" %}">Ajouter</a>
+
+</div>
+
+</div>
+</div>
+<div class="text-right mr-5">
+  {% if user.is_superuser %}
+  <a href="{% url "stock_create" %}">              
+    <img src="https://img.icons8.com/color/36/000000/plus.png" alt="plus">
+  </a>
+  {% endif %}
+</div>
+<br>
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+      <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Tableau des Produits</h4>
+                  <p class="card-description">
+                    
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table ">
+                      <thead>
+                        <tr>
+                          <th>
+                            <!-- logo-->
+                          </th>
+                          <th>
+                            Designation
+                          </th>
+                          <th>
+                            Category
+                          </th>
+                          <th>
+                            Prix
+                          </th>
+                          <th>
+                            Quantités initiales
+                          </th>
+                          <th>
+                            Quantité restante(s)
+                          </th>
+                          <th>
+                            Sortie(s)
+                          </th>
+                          <th>
+                            Entrée(s)
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for stock in object_list %}
+                        <tr>
+                            <td class="py-1">
+                              <img src="https://img.icons8.com/color/36/000000/{{stock.name}}.png" alt="image">
+                            </td>
+                            <td>
+                              <a class="btn"href="{% if user.is_superuser %}{{stock.get_absolute_url}}{% else %}#{% endif %}">{{stock.name}}</a>
+                            </td>
+                            <td>
+
+                              {% for category in stock.categories.all %}
+                                <a href="{% url "category_list" category.name %}">{{category}},</a>
+                              {% endfor %}
+                              
+                            </td>
+                            <td>
+                              {{stock.price}}Fcfa
+                            </td>
+                            <td>
+                              {{stock.initial_quantity}}
+                            </td>
+                            <td>
+                              {{stock.quantity}}
+                            </td>
+                            <td>
+                              {{stock.get_total_sale}}
+                            </td>
+                            <td>
+                              {{stock.get_total_arrival}}
+                            </td>
+                          </tr>
+                        
+                        {% endfor %}
+        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+              </div>
+            </div>
+
+
+<h1></h1>
+
+{% endblock content %}

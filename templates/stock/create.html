@@ -1,0 +1,19 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Ajouter un Stock{% endblock title %}
+
+
+{% block content %}
+<div class="m-9">
+    <h1 class="m-9">
+        Ajouter une Produit
+    </h1>
+</div>
+<form class="my-6" method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <input class="btn btn-outline-success" type="submit" value="Enregistrer">
+</form>
+
+{% endblock content %}

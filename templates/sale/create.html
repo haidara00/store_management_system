@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Ajouter une Vente{% endblock title %}
+
+{% block content %}
+
+{% if is_all_done %}
+<h1 class="my-6">
+    L'opération est effectué avec Success!
+</h1>
+<p>
+    <a href="{% url "sale_print" sale.pk %}">Télecharger le PDF</a>
+</p>
+{% elif is_greater_than_total_quantity %}
+<h1 class="my-6">
+    Impossible d'effectué telle opération! 
+</h1>
+<p class="text text-info">
+    Nous n'avons pas assez de produit pour cette opération!
+</p>
+
+{% elif is_equal_to_O %}
+    <h1 class="my-6 text ">
+        Impossible d'effectué tel opération!
+    </h1>
+{% else %}
+<h1 class="text my-4">
+    Ajouter une Vente
+</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <input class="btn btn-outline-success" type="submit" value="Enregistrer">
+</form>
+{% endif %}
+{% endblock content %}

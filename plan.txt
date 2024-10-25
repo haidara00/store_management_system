@@ -1,0 +1,36 @@
+*   Setup of All Models:
+
+* Stock:√
+- Stock model Setup√
+- Stock admin setup √
+- Stock test √
+
+* Sale: √
+- Sale model Setup √
+- Sale admin setup √
+- Sale test √
+
+* Arrival: √
+- Arrival model Setup √
+- Arrival admin setup √
+- Arrival test √
+
+* Supplier:     √
+- Supplier model setup √
+- Supplier admin setup √
+- Supplier test √
+    * Debt: √
+    - Debt model setup √
+    - Debt admin setup √
+    - Debt test √
+    * Reinbourse: √
+    - Reinbourse model setup √
+    - Reinbourse admin setup √
+    - Reinbourse test √
+    
+
+*   Setup of All Forms:
+
+* Sale Forms: view and templates
+
+

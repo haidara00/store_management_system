@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+
+{% block title %}Liste Des Ventes{% endblock title %}
+
+{% block content %}
+
+<h1 class="my-5"> Toutes les Detaills de "{{object.stock}}"</h1>
+
+<p> <strong>Nom:</strong> {{object.stock}}</p>
+<p> <strong>Quantité:</strong> {{object.quantity}}</p>
+<p> <strong>Client:</strong> {{object.client}}</p>
+<p> <strong>Date</strong> {{object.sold_at}}</p>
+
+<p>Effecutuer parp{{object.agent.username}}.</p>
+
+
+<p><a href="{% url "sale_update" object.pk %}">Modifié</a></p>
+<p><a href="{% url "sale_print" object.pk %}">La Facture</a></p>
+<p><a href="{% url "sale_list" %}">Retourner à la liste</a></p>
+
+
+
+{% endblock content %}

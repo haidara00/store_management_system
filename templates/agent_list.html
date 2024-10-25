@@ -1,0 +1,110 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}Les Agents{% endblock title %}
+
+{% block content %}
+
+
+<h1 class="my-3"> 
+    Tous les Agents
+</h1>
+
+<div class="text-right mr-5">
+    {% if user.is_superuser %}
+  <a href="{% url "agent_create" %}">           
+    <img src="https://img.icons8.com/color/36/000000/plus.png" alt="plus">Add
+  </a>
+  {% endif %}
+ 
+</div>
+<br>
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+      <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Tableau des Agents</h4>
+                  <p class="card-description">
+                    
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>
+                            <!-- logo-->
+                          </th>
+                          <th>
+                            Username
+                          </th>
+                          
+                          <th>
+                            email
+                          </th>
+                          <th>
+                            Administrateur
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for agent in object_list %}
+                        <tr>
+                            <td class="py-1">
+                              <img src="https://img.icons8.com/color/36/000000/man.png" alt="image">
+                            </td>
+                            <td>
+                                <a href="{% url "agent_detail" agent.pk %}">{{agent.username}}</a>
+                            </td>
+                            
+                            <td>
+                              {{agent.email}}
+                            </td>
+                            <td>
+                                {% if agent.is_superuser %}
+                                <p>
+                                    <img src="https://img.icons8.com/color/36/000000/checkmark.png" alt="image">
+                                </p>
+                                {% else %}
+                                <img src="https://img.icons8.com/color/36/000000/multiply.png" alt="image">
+                                {% endif %}
+                            </td>
+                            <td>
+                              
+                            </td>
+                            <td>
+                              
+                            </td>
+                          </tr>
+                        
+                        {% endfor %}
+        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+              </div>
+            </div>
+
+
+
+<!-- {% for object in object_list %}
+<h1><a href="{{object.get_absolute_url}}"> {{object.name}}</a></h1>
+
+
+<h3> {{object.quantity}}</h3>
+<h3> {{object.description}}</h3>
+<h3> {{object.category.name}}</h3>
+
+
+{% endfor %}
+-->
+
+
+<h1></h1>
+
+{% endblock content %}

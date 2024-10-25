@@ -1,0 +1,13 @@
+{% extends "_base.html" %}
+
+{% block title %}Effacer un Stock{% endblock title %}
+
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Effacer">
+</form>
+
+{% endblock content %}

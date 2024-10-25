@@ -1,0 +1,18 @@
+{% extends "_base.html" %}
+
+{% block title %}Liste Des Arrivage{% endblock title %}
+
+{% block content %}
+
+<h1> Tous les Arrivage</h1>
+
+{% for object in object_list %}
+<h1><a href="{{object.get_absolute_url}}"> {{object.stock.name}}</a></h1>
+
+<h3> {{object.quantity}}</h3>
+<h3> {{object.arrived_at}}</h3>
+
+{% endfor %}
+<h1><a href="{% url "arrival_create" %}">Ajouter un nouveau Arrivage</a></h1>
+
+{% endblock content %}

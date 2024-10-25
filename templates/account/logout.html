@@ -1,0 +1,17 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}connecter vous{% endblock title %}
+
+{% block content %}
+<h1 class="my-4"> Logut </h1>
+
+<br><br>
+
+<form method="post">
+{% csrf_token %}    
+{{form|crispy}}
+<input type="submit" class="btn btn-danger" value="Deconnecter">
+</form>
+
+{% endblock content %}

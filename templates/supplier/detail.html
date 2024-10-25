@@ -1,0 +1,37 @@
+{% extends "_base.html" %}
+
+{% block title %}Detail du Fournisseur{% endblock title %}
+
+{% block content %}
+
+<h1> Tous les Details</h1>
+
+<h1> {{object.firs_name}}</h1>
+<h3> {{object.last_name}}</h3>
+<h3> {{object.remainder}}</h3>
+<h3> {{object.is_male}}</h3>
+
+
+<h3> <a href="{% url "supplier_update" object.pk %}">Modifiez</a>|<a href="{% url "supplier_delete" object.pk %}">supprimer</a></h3>
+<h1><a href="{% url "supplier_list" %}">Retourner à la liste</a></h1>
+{% if object.debt_set.all %}
+<h1>Historique des dettes:</h1>
+
+{% for debt in object.debt_set.all %}
+    <h1>{{debt.amount}}FCFA.</h1>
+    <h3>{{debt.borrowed_at}}</h3> 
+{% endfor %}
+{% endif %}
+<h1><a href="{% url "debt_create" %}">Ajouter une Nouvelle Dette</a></h1>
+
+{% if object.reinbourse_set.all %}
+<h1>Historique des remboursements:</h1>
+{% for reinbourse in object.reinbourse_set.all %}
+    <h1>{{reinbourse.amount}}FCFA.</h1>
+    <h3>{{reinbourse.paid_at}}</h3> 
+{% endfor %}
+{% endif %}
+<h1><a href="{% url "reinbourse_create" %}">Ajouter un nouveau remboursements</a></h1>
+
+
+{% endblock content %}

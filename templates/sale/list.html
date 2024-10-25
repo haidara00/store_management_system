@@ -1,0 +1,24 @@
+{% extends "_base.html" %}
+
+{% block title %}Liste De mes Ventes{% endblock title %}
+
+{% block content %}
+
+<h1 class="my-6"> Toutes mes Ventes</h1>
+{% if object_list %}
+{% for object in object_list %}
+<h4><a href="{{object.get_absolute_url}}"> {{object.stock}}</a></h4>
+<p> {{object.quantity}} x {{object.stock.price}}FCFA.</p>
+<p> {{object.sold_at}}</p>
+<p> {{object.is_paid}}</p>
+
+
+{% endfor %}
+{% else %}
+<p class="my-6 text-info">
+    Désolé {{user.username}} mais vous n'avez rien vendue pour le moment!
+</p>
+{% endif %}
+<h4><a href="{% url "sale_create" %}">Ajouter une nouvelle vente</a></h4>
+
+{% endblock content %}
