@@ -14,7 +14,11 @@
 
 
 <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-    <h3><a class="navbar-brand" href="{% url "sale_create" %}">{% if user.is_authenticated %}{{user.company.name}}{% else %}Mon Entreprise{% endif%}</a></h3>
+    <h3><a class="navbar-brand" href="{% url "sale_create" %}">{% if user.is_authenticated %}
+      {% if user.company.logo %}
+      <img style="width:100px; height:100px; border-radius:50%" class="logo " src="{{user.company.logo.url}}">
+      {% endif %}
+      {{user.company.name}}{% else %}Mon Entreprise{% endif%}</a></h3>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -32,17 +36,13 @@
             Parametre
           </a>
           <a class="nav-link" href="{% url "agents" %}">
-            <i class="fa fa-envelope-o">
-              <span class="badge badge-danger"></span>
-            </i>
+            
             Les Agents
           </a>
           {% endif %}
           {% endif %}
         </li>
-        <li class="nav-item">
-          
-        </li>
+        
         <li class="nav-item dropdown">
           {% if user.is_authenticated %}
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -109,49 +109,79 @@
 
     {% endblock content %}
     </div>
-{% comment "logout" %}
-<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-    <h1><a class="navbar-brand" href="#">Hard and Soft Solution</a></h1>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-         <li class="nav-item">
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">
-            <i class="fa fa-envelope-o">
-              <span class="badge badge-warning"></span>
-            </i>
+
+    <footer class="footer">
+      <div class="footer__addr">
+        <h1 class="footer__logo"><img style="width:100px; height:100px;border-radius:50%"src="{% static "image/hydraSoftware.jpg" %}" alt="logo">HydraSoftware</h1>
             
-          </a>
+        <h2>Contact</h2>
+        
+        <address>
+        Ségou Mali. 00223 91550337<br>
+          00223 89414930    
+          <a class="footer__btn" href="mailto:ihaidara852@gmail.com">Email Us</a>
+          Crééer le logicièl adéquate de votre business!
+        </address>
+      </div>
+      
+      <ul class="footer__nav">
+        <li class="nav__item">
+          <h2 class="nav__title"></h2>
+    
+          <ul class="nav__ul">
+            <li>
+
+            </li>
+    
+            <li>
+
+            </li>
+                
+            <li>
+
+            </li>
+          </ul>
         </li>
         
-      </ul>
-      <ul class="navbar-nav ">
-        <li class="nav-item">
-          <a class="nav-link btn btn-success" href="#">
-            <i class="fa fa-bell">
-              <span class="badge badge-info"></span>
-            </i>
-            Login
-          </a>
+        <li class="nav__item nav__item--extra">
+          <h2 class="nav__title"></h2>
+          
+          
         </li>
         
+        <li class="nav__item">
+          <h2 class="nav__title"></h2>
+          
+          <ul class="nav__ul">
+            <li>
+
+            </li>
+            
+            <li>
+
+            </li>
+            
+            <li>
+
+            </li>
+          </ul>
+        </li>
       </ul>
-     
-    </div>
-  </nav>
-
-<br>
-<h1 class="ml-5">Bienvevu!</h1>
-<h3 class="ml-5 text-info">Veuillez vous connecter s'il vous plais! <h3>
-<br>
-
-
-<p class="ml-5"> You can sign in right <a href="{% url "login" %}">here!</a></p>
-{% endcomment %}
+      
+      <div class="legal">
+        <p>&copy; 2024 HydraSoftware. All rights reserved.</p>
+        
+        <div class="legal__links">
+          <span>Develop and Design with <span class="heart">♥</span> By Ismail Haidara at HydraSoftware</span>
+        </div>
+      </div>
+    </footer>
+    
+    
+    
+    
+    
+  
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

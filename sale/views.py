@@ -12,17 +12,20 @@ from django.template.loader import render_to_string
 from weasyprint import HTML
 from company.models import Company
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 
 
 from .forms import SaleForm, Sale
 
 
-
-class SaleCreateView(generic.CreateView):
+login = "account_login"
+class SaleCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = SaleForm
     template_name = 'sale/create.html'
     success_url = reverse_lazy("sale_create")
+    login_url = login
     
     def form_valid(self, form):
         form.instance.agent = self.request.user

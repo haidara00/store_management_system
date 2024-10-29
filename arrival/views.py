@@ -5,6 +5,8 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import generic
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from stock.models import Stock
 from sale.models import Sale
@@ -16,12 +18,14 @@ from .forms import ArrivalForm
 
 
 
-class ArrivalCreateView(generic.CreateView):
+class ArrivalCreateView(LoginRequiredMixin,generic.CreateView):
     model = Arrival
     fields = ("agent","stock", "quantity")
     template_name = 'arrival/create.html'
     success_url = reverse_lazy("arrival_list")
-    
+    login_url = "account_login"
+
+@login_required   
 def arrivalCreateView(request):
     arrival = None
     if request.method == "POST":
@@ -50,7 +54,7 @@ def arrivalCreateView(request):
         form = ArrivalForm()
     return render(request, 'arrival/create.html', {"form":form, "arrival":arrival})
    
-
+@login_required
 def ArrivalListView(request):    
     template_name = 'arrival/list.html'
     qset = Arrival.objects.all()
@@ -60,22 +64,25 @@ def ArrivalListView(request):
     return render(request,template_name,context)
     
 
-class ArrivalDetailView(generic.DetailView):
+class ArrivalDetailView(LoginRequiredMixin,generic.DetailView):
     model = Arrival
     template_name = 'arrival/detail.html'
+    login_url = "account_login"
     
     
 
-class ArrivalUpdateView(generic.UpdateView):
+class ArrivalUpdateView(LoginRequiredMixin,generic.UpdateView):
     model = Arrival
     fields = "__all__"
     template_name = 'arrival/update.html'
     success_url = reverse_lazy("arrival_list")
+    login_url = "account_login"
 
-class ArrivalDeleteView(generic.DeleteView):
+class ArrivalDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Arrival
     template_name = 'arrival/delete.html'
     success_url = reverse_lazy("arrival_list")
+    login_url = "account_login"
 
     
     

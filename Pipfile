@@ -11,8 +11,15 @@ bootstrap4 = "*"
 crispy-bootstrap4 = "*"
 weasyprint = "*"
 django-taggit = "*"
+pillow = "==9.5.0"
+whitenoise = "*"
+gunicorn = "*"
+psycopg2-binary = "==2.9.5"
 
 [dev-packages]
 
 [requires]
 python_version = "3.11"
+
+[pipenv]
+allow_prereleases = true

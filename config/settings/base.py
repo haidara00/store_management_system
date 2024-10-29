@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,9 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-nye#!y26$g(z%oh$6=qk!=z_qyn#p$rxl4pp=aogu027yr-cg#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -41,6 +38,7 @@ INSTALLED_APPS = [
     
     # third party apps:
     'allauth',
+    'whitenoise',
     'allauth.account',
     'crispy_forms',
     'crispy_bootstrap4',
@@ -58,6 +56,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'allauth.account.middleware.AccountMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -88,15 +87,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 # Password validation
@@ -153,5 +144,13 @@ LOGOUT_REDIRECT_URL = "/"
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR.joinpath("media")
 
-
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STORAGES = {
+    # 
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}

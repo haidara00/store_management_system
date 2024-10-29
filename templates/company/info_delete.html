@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Effacer une Vente{% endblock title %}
+
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <input class="m-6 btn btn-danger" type="submit" value="Effacer">
+</form>
+
+{% endblock content %}

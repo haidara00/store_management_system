@@ -1,0 +1,19 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Ajouter une information{% endblock title %}
+
+{% block content %}
+
+
+<h1 class="text m-4">
+    Ajouter une information sur votre entéprise!
+</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <input class="btn btn-outline-success" type="submit" value="Enregistrer">
+</form>
+
+{% endblock content %}

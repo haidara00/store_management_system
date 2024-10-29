@@ -52,7 +52,10 @@
     </style>
 </head>
 <body>
-<h1 class="mainTitle"> {{object.agent.company.name}}</h1>
+<h1 class="mainTitle"> 
+    
+    {{object.agent.company.name}}</h1>
+    
 <br>
 
 <br>
@@ -71,7 +74,7 @@
 <p> <strong>Nom:</strong> {{object.stock}}</p>
 <p> <strong>Prix Unitaire:</strong> {{object.stock.price}}Fcfa.</p>
 <p> <strong>Quantité Achetée:</strong> {{object.quantity}}
-    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;  
     {% if object.is_paid %}
     <span class="stamp" style="font-size:50px; color:lightgreen; padding:5px;border:3px solid">PAYÉ</span>
 {% else %}
@@ -91,10 +94,10 @@
 
 <br>
 <p>Agent: &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Client:</p>
-<p>{{object.agent}} &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;{{object.client}}
+<p>{{object.agent.username}} &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;{{object.client}}
 </p>
 <br>
-<p>Signature &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
+<p>Signature &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 
     Signature
 </p>
 

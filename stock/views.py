@@ -7,6 +7,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.forms import ModelForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from arrival.models import Arrival
 from sale.models import Sale
@@ -30,8 +31,8 @@ def categoryCreate(request):
     else:
         form = CategoryCreateForm()
     return render(request, "stock/category_create.html",{"form":form})
-    
-class StockCreateView(generic.CreateView):
+login = "account_login"   
+class StockCreateView(LoginRequiredMixin, generic.CreateView):
     model = Stock
     fields = ("name", "initial_quantity", "price", "description", "categories")
     template_name = 'stock/create.html'
@@ -41,7 +42,8 @@ class StockCreateView(generic.CreateView):
         return super().form_valid(form)
     
     success_url = reverse_lazy("stock_list")
- 
+    login_url = login
+@login_required
 def StockListView(request): 
     for stock in Stock.objects.all():
         for arrival in stock.arrival_set.all():
@@ -64,7 +66,7 @@ def StockListView(request):
         
         } 
     return render(request,template_name,context)
-
+@login_required
 def listCategoryView(request, category_name):
     template_name = "stock/category_filter.html"
     object_list = Stock.objects.filter(categories__name=category_name)
@@ -75,9 +77,10 @@ def listCategoryView(request, category_name):
     })
     
  
-class StockDetailView(generic.DetailView):
+class StockDetailView(LoginRequiredMixin, generic.DetailView):
     model = Stock
     template_name = 'stock/detail.html'
+    login_url = login
     
 @login_required 
 def stockDetailView(request, stock_id):
@@ -91,16 +94,18 @@ def stockDetailView(request, stock_id):
      
     
 
-class StockUpdateView(generic.UpdateView):
+class StockUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Stock
     fields = "__all__"
     template_name = 'stock/update.html'
     success_url = reverse_lazy("stock_list")
+    login_url = login
 
-class StockDeleteView(generic.DeleteView):
+class StockDeleteView(LoginRequiredMixin,generic.DeleteView):
     model = Stock
     template_name = 'stock/delete.html'
     success_url = reverse_lazy("stock_list")
+    login_url = login
     
 def tableView(request):
     stocks = Stock.objects.all()

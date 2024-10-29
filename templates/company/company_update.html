@@ -1,36 +1,32 @@
 {% extends "_base.html" %}
-{% load crispy_forms_tags %}
+{% load static %}
+
 
 {% block title %}Editer Votre Entréprise{% endblock title %}
 
 {% block content %}
+<div style="text-align:center;" class="centered">
 <h1>
     Modifiez les Parametres de votre Entreprise!
 </h1>
-<form method="post">
-    {% csrf_token %}
-    {{form|crispy}}
-    <input class="btn btn-outline-primary" type="submit" value="Enregistrer">
-</form>
-<br>
+
 <h1>
-    À propos de {{company.name}}
-</h1>
+    <br>
+{% if object.logo %}
+    <img style="width:100px; height:100px; border-radius:10%" class="logo " src="{{object.logo.url}}">
 
-{% if company.companyinfo_set.all %}
-{% for info in company.companyinfo_set.all %}
-
-    <p><strong>{{info.index}}:</strong> {{info.info}}<a href="{% url "company_delete" info.pk %}">Éffacer</p>  
-{% endfor %}
 {% endif %}
-<h1>
-    Ajouter de nouvelle information sur votre entréprise!
+<br>
+    <a href="{% url "company_real_update" object.pk %}">{{object.name}}</a>
 </h1>
-<form method="post">
-    {% csrf_token %}
-    {{infoform|crispy}}
-    <input class="btn btn-outline-primary" type="submit" value="Enregistrer">
-</form>
-
-
-{% endblock content %}
+<p>
+{% for info in infos %}
+    <strong>{{info.index}}:</strong> {{info.info}}<a href="{% url "info_update" info.pk %}">Modifier</a>| <a href="{% url "info_delete" info.pk %}">Delete</a><br>
+{% endfor %}
+<div class="text-right">
+    <a href="{% url "info_create" %}">Ajouter une information</a>
+</div>
+</p>
+<br>
+</div>
+{% endblock %}
